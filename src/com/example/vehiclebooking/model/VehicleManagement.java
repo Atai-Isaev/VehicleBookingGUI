@@ -26,7 +26,7 @@ public class VehicleManagement {
         @time   - 18:05
      */
 
-    void addVehicle(Vehicle vehicle) {
+    public void addVehicle(Vehicle vehicle) {
         if (vehicle != null) {
             vehicleList.add(vehicle);
             System.out.println("Vehicle: " + vehicle.getName() + " added to vehicle List!");

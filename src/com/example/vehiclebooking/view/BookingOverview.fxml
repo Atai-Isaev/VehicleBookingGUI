@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.vehiclebooking.view.VehicleBookingController">
    <children>
       <Label text="VehicleBooker">
          <font>
@@ -35,12 +35,12 @@
             <Insets left="20.0" top="30.0" />
          </VBox.margin>
       </Label>
-      <TableView prefHeight="400.0" prefWidth="500.0">
+      <TableView fx:id="vehicleTable" prefHeight="400.0" prefWidth="500.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="Name" />
-          <TableColumn prefWidth="75.0" text="Umgebung" />
-            <TableColumn prefWidth="75.0" text="Max. Distanz" />
-            <TableColumn prefWidth="75.0" text="Verfügbar?" />
+          <TableColumn fx:id="name" prefWidth="75.0" text="Name" />
+          <TableColumn fx:id="operatingEnvironment" prefWidth="75.0" text="Umgebung" />
+            <TableColumn fx:id="maxDistance" prefWidth="75.0" text="Max. Distanz" />
+            <TableColumn fx:id="available" prefWidth="75.0" text="Verfügbar?" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -57,11 +57,11 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Suparameter:" />
+            <Label text="Suchparameter:" />
             <Label text="Mindestdistanz:" GridPane.rowIndex="1" />
             <Label text="Gewünschte Umgebung:" GridPane.rowIndex="2" />
             <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
                   <RadioButton mnemonicParsing="false" text="AIR">
                      <toggleGroup>
@@ -71,6 +71,9 @@
                   <RadioButton mnemonicParsing="false" text="LAND" toggleGroup="$ToggleGroup" />
                   <RadioButton mnemonicParsing="false" text="WATER" toggleGroup="$ToggleGroup" />
                </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
             </HBox>
          </children>
          <VBox.margin>
@@ -86,6 +89,12 @@
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
       </ButtonBar>
    </children>
 </VBox>

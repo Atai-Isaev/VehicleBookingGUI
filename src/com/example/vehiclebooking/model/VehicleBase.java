@@ -5,6 +5,7 @@ public abstract class VehicleBase implements Vehicle {
     private boolean available;
     private String name;
     private OperatingEnvironment operatingEnvironment;
+    private VehicleBindingAdapter vehicleBindingAdapter;
 
     public VehicleBase(int maxDistance, String name, OperatingEnvironment operatingEnvironment) {
         super();
@@ -26,9 +27,23 @@ public abstract class VehicleBase implements Vehicle {
 
     /*
         @author - Atai
-        @date   - 18.03.2021
-        @time   - 17:50
+        @date   - 17.04.2021
+        @time   - 22:35
      */
+
+    public void setBindingAdapter(VehicleBindingAdapter vehicleBindingAdapter) {
+        this.vehicleBindingAdapter = vehicleBindingAdapter;
+    }
+
+    /*
+        @author - Atai
+        @date   - 17.04.2021
+        @time   - 22:35
+     */
+
+    public void notifyBindingAdapter(){
+        this.vehicleBindingAdapter.setVehicleBase(this);
+    }
 
     public void book(){
         this.available = false;
@@ -39,7 +54,10 @@ public abstract class VehicleBase implements Vehicle {
     }
 
     public void setMaxDistance(int maxDistance) {
-        this.maxDistance = maxDistance;
+        if (this.maxDistance!=maxDistance){
+            this.maxDistance = maxDistance;
+            notifyBindingAdapter();
+        }
     }
 
     public boolean isAvailable() {
@@ -47,7 +65,10 @@ public abstract class VehicleBase implements Vehicle {
     }
 
     public void setAvailable(boolean available) {
-        this.available = available;
+        if (this.available!=available){
+            this.available = available;
+            notifyBindingAdapter();
+        }
     }
 
     public String getName() {
@@ -55,7 +76,10 @@ public abstract class VehicleBase implements Vehicle {
     }
 
     public void setName(String name) {
-        this.name = name;
+        if (!this.name.equals(name)){
+            this.name = name;
+            notifyBindingAdapter();
+        }
     }
 
     public OperatingEnvironment getOperatingEnvironment() {
