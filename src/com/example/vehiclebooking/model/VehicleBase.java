@@ -35,6 +35,10 @@ public abstract class VehicleBase implements Vehicle {
         this.vehicleBindingAdapter = vehicleBindingAdapter;
     }
 
+    public VehicleBindingAdapter getVehicleBindingAdapter() {
+        return vehicleBindingAdapter;
+    }
+
     /*
         @author - Atai
         @date   - 17.04.2021
@@ -47,6 +51,7 @@ public abstract class VehicleBase implements Vehicle {
 
     public void book(){
         this.available = false;
+        notifyBindingAdapter();
     }
 
     public int getMaxDistance() {

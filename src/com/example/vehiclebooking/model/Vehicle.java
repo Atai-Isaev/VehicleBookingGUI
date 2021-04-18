@@ -8,5 +8,5 @@ public interface Vehicle {
     String getName();
     void book();
     boolean canOperateOn(OperatingEnvironment operatingEnvironment);
-
+    VehicleBindingAdapter getVehicleBindingAdapter();
 }

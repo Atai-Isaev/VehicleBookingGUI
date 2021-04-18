@@ -17,11 +17,13 @@ public class VehicleBookingMainApp extends Application {
     private Stage primaryStage;
 
     private ObservableList<VehicleBindingAdapter> vehicleData = FXCollections.observableArrayList();
+    private VehicleManagement vehicleManagement;
+    private Customer customer;
 
     public VehicleBookingMainApp() {
-        VehicleManagement vehicleManagement = new VehicleManagement();
+        this.vehicleManagement = new VehicleManagement();
 
-        Customer customer1 = new Customer(1, "John");
+        this.customer = new Customer(1, "John");
 
         VehicleBase vehicle1 = new eCar(100, "Tesla");
         VehicleBase vehicle2 = new Boat(150, "Delvi");
@@ -38,7 +40,6 @@ public class VehicleBookingMainApp extends Application {
         va3.setVehicleBase(vehicle3);
         va4.setVehicleBase(vehicle4);
 
-
         vehicle1.setBindingAdapter(va1);
         vehicle2.setBindingAdapter(va2);
         vehicle3.setBindingAdapter(va3);
@@ -49,7 +50,7 @@ public class VehicleBookingMainApp extends Application {
         vehicleManagement.addVehicle(vehicle3);
         vehicleManagement.addVehicle(vehicle4);
 
-        customer1.setVehicleManagement(vehicleManagement);
+        customer.setVehicleManagement(vehicleManagement);
 
         vehicleData.add(va1);
         vehicleData.add(va2);
@@ -86,6 +87,9 @@ public class VehicleBookingMainApp extends Application {
             primaryStage.show();
 
             VehicleBookingController controller = loader.getController();
+            controller.setVehicleManagement(this.getVehicleManagement());
+            controller.setCustomer(this.getCustomer());
+
             controller.setMainApp(this);
 
         } catch (IOException e) {
@@ -95,5 +99,17 @@ public class VehicleBookingMainApp extends Application {
 
     public ObservableList<VehicleBindingAdapter> getVehicleData() {
         return vehicleData;
+    }
+
+    public VehicleManagement getVehicleManagement() {
+        return vehicleManagement;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public Stage getPrimaryStage() {
+        return primaryStage;
     }
 }

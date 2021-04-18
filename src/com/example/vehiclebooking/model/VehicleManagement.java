@@ -39,8 +39,7 @@ public class VehicleManagement {
         @time   - 18:06
         @return - a filtered List of vehicles
      */
-
-    public List<Vehicle> findMatchingVehicles(int maxDistance, OperatingEnvironment operatingEnvironment) {
+    public List<Vehicle> findMatchingVehicles(int mindestDistanz, OperatingEnvironment operatingEnvironment) {
 
         List<Vehicle> resultList = new ArrayList<>();
 
@@ -50,17 +49,17 @@ public class VehicleManagement {
         } else {
             for (Vehicle currentVehicle : vehicleList) {
                 if (currentVehicle.isAvailable() && currentVehicle.canOperateOn(operatingEnvironment)
-                        && currentVehicle.getMaxDistance() == maxDistance) resultList.add(currentVehicle);
+                        && currentVehicle.getMaxDistance() >= mindestDistanz) resultList.add(currentVehicle);
 
             }
 
             if (resultList.isEmpty()) {
                 System.out.println("Based on your search 'maxDistance': "
-                        + maxDistance + " and 'operatingEnvironment':" + operatingEnvironment.name() + " 0 Vehicle(s) were found\n");
+                        + mindestDistanz + " and 'operatingEnvironment':" + operatingEnvironment.name() + " 0 Vehicle(s) were found\n");
                 return null;
             } else {
                 System.out.println("Based on your search 'maxDistance': "
-                        + maxDistance + " and 'operatingEnvironment':" + operatingEnvironment.name() + " " + resultList.size() + " Vehicle(s) were found\n");
+                        + mindestDistanz + " and 'operatingEnvironment':" + operatingEnvironment.name() + " " + resultList.size() + " Vehicle(s) were found\n");
                 for (Vehicle vehicle : resultList) {
 
                     System.out.println("    Vehicle: " + vehicle.getName() + ", max distance: " + vehicle.getMaxDistance()
@@ -123,6 +122,8 @@ public class VehicleManagement {
         }
 
     }
+
+
 
     /*
         @author - Atai
